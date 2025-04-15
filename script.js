@@ -7,14 +7,21 @@ let currentIndex = 0;
 let autoplayInterval;
 
 function updateCarousel() {
+  // Remove a classe "active" de todos e ativa o card atual
   cards.forEach((card, index) => {
     card.classList.remove('active');
     if (index === currentIndex) {
       card.classList.add('active');
     }
   });
-  // Calcula o deslocamento para centralizar o card ativo
-  const offset = cards[currentIndex].offsetLeft - ((carousel.offsetWidth - cards[currentIndex].offsetWidth) / 2);
+
+  // Pega o card ativo e sua margem esquerda (caso definida no CSS)
+  const activeCard = cards[currentIndex];
+  const cardStyle = window.getComputedStyle(activeCard);
+  const marginLeft = parseInt(cardStyle.marginLeft) || 0;
+  
+  // Calcula o deslocamento considerando a margem:
+  const offset = activeCard.offsetLeft - ((carousel.offsetWidth - activeCard.offsetWidth) / 2) - marginLeft;
   carousel.style.transform = `translateX(-${offset}px)`;
 }
 
