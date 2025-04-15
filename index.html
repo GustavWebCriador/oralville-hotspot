@@ -17,20 +17,17 @@
   </header>
 
   <main>
-    <section class="carrossel-container">
-      <button class="seta" id="anterior">‹</button>
+    <section class="carousel-container">
+      <button class="seta" id="anterior">&#10094;</button>
 
-      <div class="carrossel" id="carrossel">
-        <div class="card-ativo" onclick="mostrarInfo(this)">
-          <div class="card" onclick="mostrarInfo(this)">
+      <div class="carousel" id="carousel">
+        <div class="card active" onclick="mostrarInfo(this)">
           <img src="img/doc1.png" alt="Dr. Augusto" />
-           <div class="info">
+          <div class="info">
             <h3>Dr. Augusto</h3>
             <p>Especialista em Ortodontia.</p>
-           </div>
           </div>
         </div>
-        <div class="card-ativo" onclick="mostrarInfo(this)">
         <div class="card" onclick="mostrarInfo(this)">
           <img src="img/doc2.png" alt="Dra. Mariana" />
           <div class="info">
@@ -38,9 +35,6 @@
             <p>Implantodontista e Estética.</p>
           </div>
         </div>
-      </div>
-
-
         <div class="card" onclick="mostrarInfo(this)">
           <img src="img/doc3.png" alt="Dra. Carla" />
           <div class="info">
@@ -48,23 +42,25 @@
             <p>Periodontista e Clínica Geral.</p>
           </div>
         </div>
+      </div>
 
-      
-      <button class="seta" id="proximo">›</button>
+      <button class="seta" id="proximo">&#10095;</button>
     </section>
 
     <section class="mensagem">
-      <button class="botao-agendar">Agendar uma consulta com um especialista.</button>
       <h2>
         Inovação e <span class="roxo">Excelência</span><br />
         a <span class="roxo">serviço</span> do seu <span class="negrito">sorriso</span>.
       </h2>
+      <button class="botao-agendar">Agendar uma consulta com um especialista.</button>
     </section>
-    
   </main>
 
   <footer>
-    <p>R. Caetano Costa, 959<br>Centro, <span class="destaque">Canoinhas - SC</span></p>
+    <p>
+      R. Caetano Costa, 959<br />
+      Centro, <span class="destaque">Canoinhas - SC</span>
+    </p>
     <div class="logo">OralVille</div>
   </footer>
 </body>
