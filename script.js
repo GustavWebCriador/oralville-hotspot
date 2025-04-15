@@ -1,52 +1,53 @@
-const carrossel = document.getElementById('carrossel');
+const carousel = document.getElementById('carousel');
 const cards = document.querySelectorAll('.card');
 const btnAnterior = document.getElementById('anterior');
 const btnProximo = document.getElementById('proximo');
 
-let ativoIndex = 0;
+let currentIndex = 0;
 let autoplayInterval;
 
-function atualizarCarrossel() {
+function updateCarousel() {
   cards.forEach((card, index) => {
-    card.classList.remove('ativo');
-    if (index === ativoIndex) {
-      card.classList.add('ativo');
+    card.classList.remove('active');
+    if (index === currentIndex) {
+      card.classList.add('active');
     }
   });
-
-  const scrollX = cards[ativoIndex].offsetLeft - (carrossel.offsetWidth - cards[ativoIndex].offsetWidth) / 2;
-  carrossel.scrollTo({ left: scrollX, behavior: 'smooth' });
+  // Calcula o deslocamento para centralizar o card ativo
+  const offset = cards[currentIndex].offsetLeft - ((carousel.offsetWidth - cards[currentIndex].offsetWidth) / 2);
+  carousel.style.transform = `translateX(-${offset}px)`;
 }
 
-function pararAutoplay() {
+function stopAutoplay() {
   clearInterval(autoplayInterval);
 }
 
 btnAnterior.addEventListener('click', () => {
-  ativoIndex = (ativoIndex - 1 + cards.length) % cards.length;
-  atualizarCarrossel();
-  pararAutoplay();
+  currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+  updateCarousel();
+  stopAutoplay();
 });
 
 btnProximo.addEventListener('click', () => {
-  ativoIndex = (ativoIndex + 1) % cards.length;
-  atualizarCarrossel();
-  pararAutoplay();
+  currentIndex = (currentIndex + 1) % cards.length;
+  updateCarousel();
+  stopAutoplay();
 });
 
-function mostrarInfo(cardClicado) {
+function mostrarInfo(clickedCard) {
   cards.forEach((card, index) => {
-    if (card === cardClicado) ativoIndex = index;
+    if (card === clickedCard) {
+      currentIndex = index;
+    }
   });
-  atualizarCarrossel();
-  pararAutoplay();
+  updateCarousel();
+  stopAutoplay();
 }
 
 window.onload = () => {
-  atualizarCarrossel();
-
+  updateCarousel();
   autoplayInterval = setInterval(() => {
-    ativoIndex = (ativoIndex + 1) % cards.length;
-    atualizarCarrossel();
-  }, 4000); // troca a cada 4 segundos
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCarousel();
+  }, 4000); // troca de slide a cada 4 segundos
 };
